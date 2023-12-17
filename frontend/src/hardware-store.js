@@ -1,9 +1,8 @@
 import { useLayoutEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { Footer, Header, Loader, Modal } from './components';
+import { Error, Footer, Header, Loader, Modal } from './components';
 import { setUser } from './actions';
-import styled from 'styled-components';
 import {
 	Authorization,
 	ShoppingCart,
@@ -12,6 +11,8 @@ import {
 	Registration,
 	Users,
 } from './pages';
+import { ERROR } from './constants';
+import styled from 'styled-components';
 
 const AppColumn = styled.div`
 	display: flex;
@@ -62,7 +63,7 @@ export const HardwareStore = () => {
 					<Route path="/register" element={<Registration />} />
 					<Route path="/users" element={<Users />} />
 					<Route path="/loader" element={<Loader />} />
-					<Route path="*" element={<div>Ошибка</div>} />
+					<Route path="*" element={<Error error={ERROR.PAGE_NOT_EXIST} />} />
 				</Routes>
 			</Page>
 			<Footer />

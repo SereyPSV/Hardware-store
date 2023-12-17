@@ -26,6 +26,7 @@ const ShoppingCartContainer = ({ className }) => {
 			request(`/products?&searchPhrase=&searchGroup=${GROUPS}&sort=$&page=&limit=`),
 		])
 			.then(([{ data: shoppingCart }, { data: products }]) => {
+				console.log(shoppingCart);
 				const newShoppingCart = [];
 				shoppingCart.forEach((cart) => {
 					products.products.forEach((product) => {
@@ -39,13 +40,10 @@ const ShoppingCartContainer = ({ className }) => {
 						}
 					});
 				});
-				console.log(newShoppingCart);
 				dispatch(setShoppingCart(newShoppingCart));
 			})
 			.finally(() => setIsLoading(false));
 	}, [dispatch]);
-
-	isLoading && <Loader />; // лоадер
 
 	return (
 		<Loader isLoading={isLoading}>
